@@ -14,7 +14,7 @@ public abstract class DicoCommand implements Runnable {
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DicoCommand.class);
 	private static final boolean USE_CLASSPATH = false;
-	private static final String DICO_PATH_SYSTEM = "D:/workspaces/java_nantes/DicoUtils/src/main/resources/dictionnaire.txt";
+	private static final String DICO_PATH_SYSTEM = "D:/workspaces/java_nantes/formation-dicoutils/src/main/resources/dictionnaire.txt";
 	protected static final List<String> DICO = new ArrayList<String>();
 
 	public static void readDico() {

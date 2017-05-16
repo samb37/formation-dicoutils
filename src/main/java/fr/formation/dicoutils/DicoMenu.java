@@ -38,6 +38,7 @@ public class DicoMenu {
 	public DicoMenu() {
 		this.menuItems = new HashMap<>();
 		this.menuItems.put(1, new DicoCommandWord());
+		this.menuItems.put(2, new DicoCommandSearch());
 		this.menuItems.put(3, new DicoCommandExit());
 	}
 
