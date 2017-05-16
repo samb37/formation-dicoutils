@@ -27,7 +27,7 @@ public class DicoMenu {
 	@Override
 	protected void finalize() throws Throwable {
 		SCANNER.close();
-		// super.finalize();
+		// super.finalize(); -- Inutile car la méthode finalize() de la classe parent est vide. 
 	}
 
 	/**
@@ -39,7 +39,12 @@ public class DicoMenu {
 		this.menuItems = new HashMap<>();
 		this.menuItems.put(1, new DicoCommandWord());
 		this.menuItems.put(2, new DicoCommandSearch());
-		this.menuItems.put(3, new DicoCommandExit());
+		this.menuItems.put(3, new DicoCommandRegex());
+		this.menuItems.put(4, new DicoCommandExit());
+	}
+	
+	public boolean hasMenuKey(final int key) {
+		return this.menuItems.containsKey(key);
 	}
 
 	public DicoCommand getCommand(final Integer menuItem) {
