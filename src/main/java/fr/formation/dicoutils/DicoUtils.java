@@ -14,7 +14,7 @@ public class DicoUtils implements Runnable {
 		final DicoMenu menu = new DicoMenu();
 		while (DicoUtils.RUNNING) {
 			menu.display();
-			final String strMenuItem = menu.readInput("Choisissez une foncionnalité : ");
+			final String strMenuItem = DicoMenu.readInput("Choisissez une foncionnalité : ");
 			// FIXME : Attention, la méthode parseInt peut lever une NumberFormatException.
 			final int menuItem = Integer.parseInt(strMenuItem);
 			final DicoCommand command = menu.getCommand(menuItem);
