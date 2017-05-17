@@ -35,12 +35,17 @@ public class DicoMenu {
 	 */
 	private Map<Integer, DicoCommand> menuItems;
 	
+	/**
+	 * Constructeur permettant d'initialiser le contenu du menu.
+	 */
 	public DicoMenu() {
 		this.menuItems = new HashMap<>();
 		this.menuItems.put(1, new DicoCommandWord());
 		this.menuItems.put(2, new DicoCommandSearch());
-		this.menuItems.put(3, new DicoCommandRegex());
-		this.menuItems.put(4, new DicoCommandExit());
+		this.menuItems.put(3, new DicoCommandStartsWith());
+		this.menuItems.put(4, new DicoCommandEndsWith());
+		this.menuItems.put(5, new DicoCommandRegex());
+		this.menuItems.put(6, new DicoCommandExit());
 	}
 	
 	public boolean hasMenuKey(final int key) {
