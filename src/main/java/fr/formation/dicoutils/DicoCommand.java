@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,15 +15,26 @@ import org.slf4j.LoggerFactory;
 public abstract class DicoCommand implements Runnable {
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DicoCommand.class);
-	private static final boolean USE_CLASSPATH = false;
+	private static final boolean USE_CLASSPATH = true;
 	private static final String DICO_PATH_SYSTEM = "D:/workspaces/java_nantes/formation-dicoutils/src/main/resources/dictionnaire.txt";
+	private static final String DICO_PATH_CLASSPATH = "./dictionnaire.txt";
 	protected static final List<String> DICO = new ArrayList<String>();
 
 	public static void readDico() {
 		if (DicoCommand.USE_CLASSPATH) {
-			// DicoCommand.readDicoClasspath();
+			DicoCommand.readDicoClasspath();
 		} else {
 			DicoCommand.readDicoSystem();
+		}
+	}
+
+	private static void readDicoClasspath() {
+		final InputStream is = DicoCommand.class.getClassLoader()
+				.getResourceAsStream(DicoCommand.DICO_PATH_CLASSPATH);
+		try (final BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+			fillDico(reader);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -30,13 +43,7 @@ public abstract class DicoCommand implements Runnable {
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(dicoFile));
-			String line = null;
-			do {
-				line = reader.readLine();
-				if (line != null) {
-					DicoCommand.DICO.add(line);
-				}
-			} while (line != null);
+			fillDico(reader);
 		} catch (final IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -50,8 +57,18 @@ public abstract class DicoCommand implements Runnable {
 		}
 	}
 
+	private static void fillDico(BufferedReader reader) throws IOException {
+		String line = null;
+		do {
+			line = reader.readLine();
+			if (line != null) {
+				DicoCommand.DICO.add(line);
+			}
+		} while (line != null);
+	}
+
 	private String name;
-	
+
 	public DicoCommand(final String name) {
 		this.name = name;
 	}
