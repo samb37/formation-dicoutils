@@ -28,15 +28,21 @@ public class DicoUtils implements Runnable {
 	}
 
 	private final Scanner scanner;
+	private final DicoLoader loader;
+	private String[] words;
 
 	public DicoUtils() {
 		this.scanner = new Scanner(System.in);
+		this.loader = new ClasspathDicoLoader();
 	}
 
 	@Override
 	public void run() {
 		LOG.debug("Exécution de la méthode run !");
 		String action = null;
+		this.words = this.readDico();
+		LOG.debug("Nombre de mots dans le dictionnaire : "
+				+ this.words.length);
 		while (!"exit".equals(action)) {
 			this.displayMenu();
 			action = this.readAction();
@@ -53,6 +59,10 @@ public class DicoUtils implements Runnable {
 				LOG.error("L'action '" + action + "' n'est pas reconnue.");
 			}
 		}
+	}
+
+	private String[] readDico() {
+		return this.loader.loadFile("./dictionnaire.txt");
 	}
 
 	/**
