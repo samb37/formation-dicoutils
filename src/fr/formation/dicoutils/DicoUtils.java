@@ -75,7 +75,8 @@ public class DicoUtils implements Runnable {
 			if (input.length() > 0 && input.matches("A|B|exit")) {
 				result = input;
 			} else {
-
+				LOG.error("L'action saisie n'est pas valide, "
+						+ "veuillez choisir une action du menu.");
 			}
 		}
 		return result;
