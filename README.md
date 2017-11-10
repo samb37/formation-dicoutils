@@ -22,7 +22,7 @@ Les fonctions de recherche dont j'ai besoin sont les suivantes :
 
 ## Ajout de la librairie Log4J
 
-- Télécharger la librairie Log4J2 : https://logging.apache.org/log4j/2.x/download.html (Choisir le livrable "...-bin.zip")
+- Télécharger la librairie Log4J2 : https://logging.apache.org/log4j/1.2/download.html
 - Ouvrir l'archive ZIP et extraire les JAR "log4j-api-2.x.x.jar" et "log4j-core-2.x.x.jar" dans un novueau dossier "lib" à côté du dossier "src", dans le projet. Ne pas oublier de faire File -> Refresh dans Eclipse si les fichiers sont ajoutés en dehors de l'IDE, par l'explorer Windows par exemple.
 - Sélectionner les deux JAR dans la vue project explorer d'Eclipse et clic droit -> Build path -> add to build path
 
